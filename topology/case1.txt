@@ -1,0 +1,89 @@
+# Node Counts
+BEG_000 #startCount endCount nodeType
+1 5 wacs
+6 14 routers
+15 15 lcs
+16 20 pmus
+END_000
+
+# Node mapping
+# 16-20 PMUs
+# 1-5 WACs
+# 15 LC
+# Rest are Routers
+
+# Router Topology SS-SS
+BEG_001 #fromRouter toRouter BandWidth(Mbps) Delay(ms)
+1 6 5 10
+2 7 5 10
+3 11 5 10
+4 9 5 10
+5 13 5 10
+15 14 5 10
+6 7 5 10
+6 8 5 10
+6 9 5 10
+7 11 5 10
+7 8 5 10
+7 12 5 10
+8 10 5 10
+8 9 5 10
+9 12 5 10
+10 12 5 10
+10 13 5 10
+11 14 5 10
+11 12 5 10
+12 14 5 10
+12 13 5 10
+13 14 5 10
+END_001
+
+
+BEG_002
+END_002
+
+
+BEG_003
+END_003
+
+
+BEG_004
+END_004
+
+#TypeI traffic
+#dest src dest_type
+BEG_005
+15 1 LC
+15 2 LC
+15 3 LC
+15 4 LC
+15 5 LC
+1 15 WAC
+2 15 WAC
+3 15 WAC
+4 15 WAC
+5 15 WAC
+END_005
+
+
+#TypeII traffic
+#dest src 
+BEG_006
+15 1
+15 2
+15 3
+15 4
+15 5
+END_006
+
+
+BEG_100
+END_100
+
+
+#TypeIII traffic(BE- PMU)
+#dest src dest_type 
+BEG_101
+END_101
+
+

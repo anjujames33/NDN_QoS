@@ -6,7 +6,7 @@ git clone -b qos https://github.com/anjujames33/NDN_QoS.git	// To checkout qos b
 cd NDN_QoS/	// Move to NDN_QoS directory
 git clone --recursive https://github.com/anjujames33/ndnSIM.git ns-3/src/ndnSIM	// Clone ndnSIM, NFD and ndn-cxx
 
-2. Check branch details
+2. Check branch details (make sure you are in 'qos' branch in NDN_QoS, ndnSIM, NFD and ndn-cxx folders)
 -----------------------
 git branch -a	// Show all branches and the current branch with * symbol.
 git remote -v	// Display git url
