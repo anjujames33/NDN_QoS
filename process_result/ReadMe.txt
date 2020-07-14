@@ -4,10 +4,10 @@
 ./waf configure -d optimized --enable-examples
 ./waf --run=ndn-case1
 
-// 2. Analyze results - Creates output file named lat-<tracefile> 
+// 2. Analyze results - Copy script to ns-3 folder. Creates output file named lat-<tracefile> 
 python  preproc-cases-ndn.py <tracefile>
 
-// 3. Get loss data - Creates file named Loss-lat-<tracefile>
+// 3. Get loss data - Copy script to ns-3 folder Creates file named Loss-lat-<tracefile>
 python LossStats.py lat-<tracefile>
 
 // 4. Simulation automation (copy scripts and python files to ns-3 folder)
