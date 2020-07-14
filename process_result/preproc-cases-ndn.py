@@ -27,8 +27,8 @@ def main(infile):
     outstanding = {}
     agg_queue = {}
     agg_tmp = {}
-   
-    list_processed = []
+    count = 0
+    list_processed = {}
     list_wacflows = []
     list_pdcflows = []
     list_bgdflows = []
@@ -82,8 +82,9 @@ def main(infile):
             deliveredSize[cls]  += ps1
 
             latlog.write("%d %d %.9f %.9f %.9f %s %s\n" % (sn1, nodeid, t1, time, latency, cls, name))
-	    list_processed.append(str(sn1) + " " + str(nodeid) + " " + str(t1) + " " + str(time) + " " + str(latency) + " " + str(cls) + " " + str(name))
-            
+            if name not in list_processed:
+                list_processed[name] = []
+	    list_processed[name].append(str(sn1) + " " + str(nodeid) + " " + str(t1) + " " + str(time) + " " + str(latency) + " " + str(cls) + " " + str(name))
             if cls in ["PMU_AGG", "AMI_AGG"]:
                 if not (nodeid, cls) in agg_queue:
                     agg_queue[(nodeid, cls[:3])] = []
@@ -100,9 +101,9 @@ def main(infile):
     with open("ndn_all_flows.csv") as flowfile:
         for line in flowfile:
                 flowsplit = line.strip().split()
-                if flowsplit[2] == "TypeI":
-                        list_wacflows.append(line.strip())
                 if flowsplit[2] == "TypeII":
+                        list_wacflows.append(line.strip())
+                if flowsplit[2] == "TypeI":
                         list_pdcflows.append(line.strip())
                 if flowsplit[2] == "BE":
                         list_bgdflows.append(line.strip())
@@ -116,7 +117,7 @@ def main(infile):
     for name in outstanding:
 
 	outcounter += 1
-        if(outcounter % 1000 == 0):
+        if(outcounter % 100 == 0):
 	    print "Processing packet...", outcounter, "out of", len(outstanding)
 
         if "typeII" in name:
@@ -129,8 +130,9 @@ def main(infile):
                         flowcompleted = False
                         #If flow exists, check if entry is in the processed list
                         if int(wacsrcnode) == int(wflow.split(" ")[1]):
-                                #Verify if flow exist in processed file or not
-                                for procd in list_processed:
+                                if name in list_processed:
+                                   #Verify if flow exist in processed file or not
+                                   for procd in list_processed[name]:
                                         procditem = procd.split()
                                         if (int(wacsrcnode) == int(procditem[0])) and (int(wflow.split(" ")[0]) == int(procditem[1])) and (wacpktname.strip() == procditem[6].strip()):
                                                 #print "Processing packet loss...WAC flow completed"
@@ -140,7 +142,7 @@ def main(infile):
                                         #print wacsrcnode, wflow.split(" ")[0], outstanding[name][4], "WAC packet loss!!!"
 					latlog.write("%d %d %.9f %.9f %.9f %s %s\n" % (int(wacsrcnode), int(wflow.split(" ")[0]), float(wacsrctime), infinitelat, infinitelat - float(wacsrctime) , "TypeII", wacpktname))
 
-        if "typeI" in name:
+        if "typeI/" in name:
                 #Check all PDC flows
                 pdcsrcnode = outstanding[name][3]
                 pdcsrctime = outstanding[name][0]
@@ -150,8 +152,9 @@ def main(infile):
                         flowcompleted = False
                         #If flow exists, check if entry is in the processed list
                         if int(pdcsrcnode) == int(pflow.split(" ")[1]):
-                                #Verify if flow exist in processed file or not
-                                for procd in list_processed:
+                                if name in list_processed:
+                                   #Verify if flow exist in processed file or not
+                                   for procd in list_processed[name]:
                                         procditem = procd.split()
                                         if (int(pdcsrcnode) == int(procditem[0])) and (int(pflow.split(" ")[0]) == int(procditem[1])) and (pdcpktname.strip() == procditem[6].strip()):
                                                 #print "Processing packet loss...PDC flow completed"
@@ -173,7 +176,7 @@ def main(infile):
                         #If flow exists, check if entry is in the processed list
                         if int(bgdsrcnode) == int(bflow.split(" ")[1]):
                                 #Verify if flow exist in processed file or not
-                                for procd in list_processed:
+                                for procd in list_processed[bgdsrcnode]:
                                         procditem = procd.split()
                                         if (int(bgdsrcnode) == int(procditem[0])) and (int(bflow.split(" ")[0]) == int(procditem[1])) and (bgdpktname.strip() == procditem[6].strip()):
                                                 #print "Processing packet loss...PDC flow completed"

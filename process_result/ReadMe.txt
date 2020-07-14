@@ -12,9 +12,9 @@ python LossStats.py lat-<tracefile>
 
 // 4. Simulation automation (copy scripts and python files to ns-3 folder)
     a. runtest.sh           // run the simulation. edit scenario file name.
-    a. process_result.sh    // process the result to get loss rate. edit the file name to process.
+    a. process.sh    // process the result to get loss rate. edit the file name to process.
 
 // 5. Commands to execute script
 nohup bash runtest.sh &         // Use nohup and '&' to continue execution in background even if terminal is closed.
-nohup bash process_result.sh &
+nohup bash process.sh &
 
