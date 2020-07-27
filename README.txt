@@ -1,4 +1,6 @@
-# NDN_QoS
+I. NDN_QoS
+===========
+
 1. Code Checkout:
 ----------------
 git clone https://github.com/anjujames33/NDN_QoS.git	// Clone ns3 alone OR
@@ -31,3 +33,13 @@ git push origin qos	// Pushing the code to remote branch
 ---------------------
 cd ns-3
 NS_LOG=ndn.Consumer:ndn.Producer ./waf --run=ndn-qos
+
+
+
+II. Folder Structure
+=====================
+1. ns-3 			- Code base
+2. process_result	- Python scripts for Monte Carlo simulations and result processing
+3. thirdparty		- Thirdparty libraries used (Required to build the code without error)
+4. topology			- Topology files for Monte Carlo simulations used in scenario files
+5. clients			- Python clients to connect from windows machine to test 123-bus system.
