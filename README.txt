@@ -29,8 +29,8 @@ git status	// All the files added to git will change color to green. If somethin
 git commit -m "Add meaningful comment summerizing the modification made"	// Code commiting locally
 git push origin qos	// Pushing the code to remote branch
 
-5.Run QoS application
----------------------
+5.Run QoS enabled Simulation
+----------------------------
 cd ns-3
 NS_LOG=ndn.Consumer:ndn.Producer ./waf --run=ndn-qos
 
@@ -39,7 +39,53 @@ NS_LOG=ndn.Consumer:ndn.Producer ./waf --run=ndn-qos
 II. Folder Structure
 =====================
 1. ns-3 			- Code base
-2. process_result	- Python scripts for Monte Carlo simulations and result processing
+2. process_result	- Python scripts for simulations and result processing.
 3. thirdparty		- Thirdparty libraries used (Required to build the code without error)
 4. topology			- Topology files for Monte Carlo simulations used in scenario files
 5. clients			- Python clients to connect from windows machine to test 123-bus system.
+
+
+III. New/Modified files (New Mexico State University)
+=====================================================
+
+1. ns-3/src/ndnSIM/NFD/daemon/fw
+
+	ndn-priority-tx-queue.cpp
+	ndn-priority-tx-queue.hpp
+	ndn-qos-queue.cpp
+	ndn-qos-queue.hpp
+	ndn-token-bucket.cpp
+	ndn-token-bucket.hpp
+	qos-strategy.cpp
+	qos-strategy.hpp
+	TBucket.cpp
+	TBucket.hpp
+
+2. ns-3/src/ndnSIM/apps
+
+	ConsumedTokens.cpp
+	ConsumedTokens.hpp
+	ndn-aggregator.cpp
+	ndn-aggregator.hpp
+	ndn-app.cpp
+	ndn-app.hpp
+	ndn-subscriber.cpp
+	ndn-subscriber.hpp
+	ndn-subscriber-sync.cpp
+	ndn-subscriber-sync.hpp
+	ndn-synchronizer.cpp
+	ndn-synchronizer.hpp
+	ndn-synchronizer-socket.cpp
+	ndn-synchronizer-socket.hpp
+	parser-OpenDSS.cpp
+	parser-OpenDSS.hpp
+	parser-ReDisPv.cpp
+	parser-ReDisPv.hpp
+	token-bucket.cpp
+	token-bucket.hpp
+
+IV . Documentation
+==================
+Documentation is available in ns-3/src/ndnSIM/docs/html/ folder.
+Open index.html in browser and you will be able to find the documentation similar to ndnSIM.
+
