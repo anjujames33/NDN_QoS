@@ -45,7 +45,7 @@ II. Folder Structure
 5. clients			- Python clients to connect from windows machine to test 123-bus system.
 
 
-III. New/Modified files (New Mexico State University)
+III. New files (New Mexico State University)
 =====================================================
 
 1. ns-3/src/ndnSIM/NFD/daemon/fw
@@ -67,8 +67,6 @@ III. New/Modified files (New Mexico State University)
 	ConsumedTokens.hpp
 	ndn-aggregator.cpp
 	ndn-aggregator.hpp
-	ndn-app.cpp
-	ndn-app.hpp
 	ndn-subscriber.cpp
 	ndn-subscriber.hpp
 	ndn-subscriber-sync.cpp
